@@ -187,3 +187,176 @@ footer {
         font-size: 17px;
     }
 }
+
+/* ==================================================
+   FRACTURAS — Alto_Contraste
+   ================================================== */
+
+
+/* --- TÍTULO ROTO --- */
+
+.broken-title {
+    position: relative;
+    overflow: visible;
+}
+
+.broken-title span {
+    position: relative;
+    display: inline-block;
+
+    transform: translate(3px, 2px);
+}
+
+
+/* pequeño fragmento desplazado del título */
+
+.broken-title::after {
+    content: attr(data-text);
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 47%;
+
+    overflow: hidden;
+
+    color: #f0f0f0;
+    background: #0d1117;
+
+    transform: translate(-2px, 0);
+
+    pointer-events: none;
+
+    opacity: 0.32;
+}
+
+
+/* --- LÍNEA INTERRUMPIDA --- */
+
+.broken-line {
+    position: relative;
+
+    border-bottom: none;
+    padding-bottom: 10px;
+}
+
+.broken-line::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            to right,
+
+            #30363d 0%,
+            #30363d 18%,
+
+            transparent 18%,
+            transparent 22%,
+
+            #30363d 22%,
+            #30363d 57%,
+
+            transparent 57%,
+            transparent 61%,
+
+            #30363d 61%,
+            #30363d 88%,
+
+            transparent 88%
+        );
+}
+
+
+/* --- ENTRADAS LIGERAMENTE FUERA DE SITIO --- */
+
+.entry:nth-of-type(even) h2 {
+    transform: translateX(5px);
+}
+
+.entry:nth-of-type(odd) time {
+    transform: translateX(2px);
+}
+
+
+/* --- ALGUNAS LÍNEAS NO LLEGAN AL FINAL --- */
+
+.entry:nth-of-type(odd) {
+    width: 97%;
+}
+
+.entry:nth-of-type(even) {
+    width: 99%;
+}
+
+
+/* --- CURSOR / FALLO MÍNIMO --- */
+
+.site-subtitle::after {
+    content: "_";
+
+    display: inline-block;
+    margin-left: 5px;
+
+    color: #555;
+
+    animation: broken-cursor 5s steps(1) infinite;
+}
+
+
+@keyframes broken-cursor {
+
+    0%, 91% {
+        opacity: 0;
+    }
+
+    92%, 94% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 0;
+    }
+
+    96% {
+        opacity: 1;
+    }
+
+    97%, 100% {
+        opacity: 0;
+    }
+}
+
+
+/* --- FRACTURA OCASIONAL DEL TÍTULO --- */
+
+@keyframes fracture {
+
+    0%, 96%, 100% {
+        transform: translate(3px, 2px);
+    }
+
+    97% {
+        transform: translate(6px, 2px);
+    }
+
+    98% {
+        transform: translate(1px, 2px);
+    }
+
+    99% {
+        transform: translate(4px, 2px);
+    }
+}
+
+.broken-title span {
+    animation: fracture 9s steps(1) infinite;
+}

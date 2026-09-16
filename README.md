@@ -1,2 +1,2 @@
 # Alto_Contraste
-Como en mis ilusiones, un lugar que no existe en donde estamos Tú y Yo
+Un lugar que no existe, donde no estamos 

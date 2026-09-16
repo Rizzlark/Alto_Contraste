@@ -66,7 +66,6 @@ body {
 
 /* ==================================================
    ALTO
-   Limpio, fino y espaciado
    ================================================== */
 
 .title-alto {
@@ -78,6 +77,7 @@ body {
     margin-left: 2px;
 
     font-family: "Courier New", Courier, monospace;
+
     font-size: 47px;
     font-weight: 400;
 
@@ -107,7 +107,6 @@ body {
 
 /* ==================================================
    _CONTRASTE
-   Pesado + desregistrado
    ================================================== */
 
 .title-contraste {
@@ -120,16 +119,21 @@ body {
     margin-left: 28px;
 
     font-family: Arial, Helvetica, sans-serif;
+
     font-size: 61px;
     font-weight: 800;
 
     letter-spacing: -0.065em;
 
-    animation: contraste-fracture 4s steps(1) infinite;
+    animation:
+        contraste-fracture
+        4s
+        steps(1)
+        infinite;
 }
 
 
-/* Primera copia desplazada */
+/* Copia fantasma */
 
 .title-contraste::before {
     content: "_CONTRASTE";
@@ -145,15 +149,20 @@ body {
 
     opacity: 0.38;
 
-    transform: translate(7px, -3px);
+    transform:
+        translate(7px, -3px);
 
     pointer-events: none;
 
-    animation: contraste-ghost 4s steps(1) infinite;
+    animation:
+        contraste-ghost
+        4s
+        steps(1)
+        infinite;
 }
 
 
-/* Segunda copia recortada */
+/* Fragmento desplazado */
 
 .title-contraste::after {
     content: "_CONTRASTE";
@@ -172,11 +181,16 @@ body {
 
     opacity: 0.55;
 
-    transform: translate(-6px, 3px);
+    transform:
+        translate(-6px, 3px);
 
     pointer-events: none;
 
-    animation: contraste-slice 4s steps(1) infinite;
+    animation:
+        contraste-slice
+        4s
+        steps(1)
+        infinite;
 }
 
 
@@ -196,7 +210,7 @@ body {
 }
 
 
-/* Línea fragmentada bajo el subtítulo */
+/* Línea rota */
 
 .site-subtitle::before {
     content: "";
@@ -231,7 +245,7 @@ body {
 }
 
 
-/* Pequeño cursor defectuoso */
+/* Cursor defectuoso */
 
 .site-subtitle::after {
     content: "_";
@@ -242,12 +256,16 @@ body {
 
     color: #fff;
 
-    animation: broken-cursor 5s steps(1) infinite;
+    animation:
+        broken-cursor
+        5s
+        steps(1)
+        infinite;
 }
 
 
 /* ==================================================
-   ARCHIVO DE ESCRITOS
+   ARCHIVO
    ================================================== */
 
 .archive-label {
@@ -259,6 +277,7 @@ body {
     color: #fff;
 
     font-size: 11px;
+
     letter-spacing: 0.2em;
 
     text-transform: uppercase;
@@ -309,16 +328,19 @@ body {
 .entry {
     display: grid;
 
-    grid-template-columns: 120px 1fr;
+    grid-template-columns:
+        120px 1fr;
+
     align-items: center;
 
     padding: 17px 0;
 
-    border-bottom: 1px solid #fff;
+    border-bottom:
+        1px solid #fff;
 }
 
 
-/* Pequeñas irregularidades */
+/* Irregularidades */
 
 .entry:nth-of-type(odd) {
     width: 97%;
@@ -328,25 +350,80 @@ body {
     width: 99%;
 }
 
-.entry:nth-of-type(odd) time {
-    transform: translateX(2px);
+.entry:nth-of-type(odd)
+.entry-code {
+    transform:
+        translateX(2px);
 }
 
-.entry:nth-of-type(even) h2 {
-    transform: translateX(5px);
+.entry:nth-of-type(even)
+h2 {
+    transform:
+        translateX(5px);
 }
 
 
-/* Fecha */
+/* ==================================================
+   CÓDIGOS CORRUPTOS
+   ================================================== */
 
-.entry time {
+.entry-code {
+    display: inline-block;
+
+    min-width: 70px;
+
     color: #fff;
 
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
     font-size: 12px;
+
+    letter-spacing: 0.08em;
+
+    opacity: 0.65;
+
+    white-space: pre;
+
+    transition:
+        opacity 0.08s linear,
+        transform 0.08s linear;
 }
 
 
-/* Enlaces */
+/* Código reconstruido */
+
+.entry:hover
+.entry-code {
+    opacity: 1;
+}
+
+
+/* Sacudida al cambiar */
+
+.entry-code.code-glitch {
+    transform:
+        translateX(3px);
+
+    opacity: 1;
+}
+
+
+/* Código estable */
+
+.entry-code.reconstructed {
+    transform:
+        translateX(0);
+
+    opacity: 1;
+}
+
+
+/* ==================================================
+   ENLACES DE LAS ENTRADAS
+   ================================================== */
 
 .entry a {
     color: #fff;
@@ -364,7 +441,7 @@ body {
 }
 
 
-/* Inversión blanco/negro al pasar el cursor */
+/* Inversión blanco/negro */
 
 .entry a:hover h2 {
     display: inline-block;
@@ -374,7 +451,8 @@ body {
     background: #fff;
     color: #000;
 
-    transform: translate(-2px, 0);
+    transform:
+        translate(-2px, 0);
 }
 
 
@@ -432,9 +510,13 @@ body {
 
     color: #fff;
 
-    font-family: Georgia, "Times New Roman", serif;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     font-size: 18px;
+
     line-height: 1.9;
 }
 
@@ -461,7 +543,9 @@ body {
 
     margin: 45px 0;
 
-    filter: grayscale(100%) contrast(125%);
+    filter:
+        grayscale(100%)
+        contrast(125%);
 }
 
 
@@ -481,73 +565,92 @@ footer {
 
 
 /* ==================================================
-   ANIMACIÓN PRINCIPAL DE _CONTRASTE
-
-   Ciclo completo: 4 segundos.
-   Permanece quieto la mayor parte del tiempo.
+   FRACTURA DE _CONTRASTE
    ================================================== */
 
 @keyframes contraste-fracture {
 
-    0%, 89%, 100% {
-        transform: translateX(0);
+    0%,
+    89%,
+    100% {
+        transform:
+            translateX(0);
     }
 
     90% {
-        transform: translateX(10px);
+        transform:
+            translateX(10px);
     }
 
     92% {
-        transform: translateX(-5px);
+        transform:
+            translateX(-5px);
     }
 
     94% {
-        transform: translateX(7px);
+        transform:
+            translateX(7px);
     }
 
     96% {
-        transform: translateX(-2px);
+        transform:
+            translateX(-2px);
     }
 
     98% {
-        transform: translateX(0);
+        transform:
+            translateX(0);
     }
 }
 
 
 /* ==================================================
-   DOBLE IMPRESIÓN / FANTASMA
+   DOBLE IMPRESIÓN
    ================================================== */
 
 @keyframes contraste-ghost {
 
-    0%, 89%, 100% {
-        transform: translate(7px, -3px);
+    0%,
+    89%,
+    100% {
+        transform:
+            translate(7px, -3px);
+
         opacity: 0.38;
     }
 
     90% {
-        transform: translate(18px, -3px);
+        transform:
+            translate(18px, -3px);
+
         opacity: 0.65;
     }
 
     92% {
-        transform: translate(-10px, 2px);
+        transform:
+            translate(-10px, 2px);
+
         opacity: 0.48;
     }
 
     94% {
-        transform: translate(14px, -1px);
+        transform:
+            translate(14px, -1px);
+
         opacity: 0.70;
     }
 
     96% {
-        transform: translate(4px, -3px);
+        transform:
+            translate(4px, -3px);
+
         opacity: 0.45;
     }
 
     98% {
-        transform: translate(7px, -3px);
+        transform:
+            translate(7px, -3px);
+
         opacity: 0.38;
     }
 }
@@ -559,33 +662,47 @@ footer {
 
 @keyframes contraste-slice {
 
-    0%, 89%, 100% {
-        transform: translate(-6px, 3px);
+    0%,
+    89%,
+    100% {
+        transform:
+            translate(-6px, 3px);
+
         opacity: 0.55;
     }
 
     90% {
-        transform: translate(-17px, 3px);
+        transform:
+            translate(-17px, 3px);
+
         opacity: 0.80;
     }
 
     92% {
-        transform: translate(12px, 3px);
+        transform:
+            translate(12px, 3px);
+
         opacity: 0.65;
     }
 
     94% {
-        transform: translate(-12px, 3px);
+        transform:
+            translate(-12px, 3px);
+
         opacity: 0.85;
     }
 
     96% {
-        transform: translate(-4px, 3px);
+        transform:
+            translate(-4px, 3px);
+
         opacity: 0.55;
     }
 
     98% {
-        transform: translate(-6px, 3px);
+        transform:
+            translate(-6px, 3px);
+
         opacity: 0.55;
     }
 }
@@ -597,11 +714,13 @@ footer {
 
 @keyframes broken-cursor {
 
-    0%, 91% {
+    0%,
+    91% {
         opacity: 0;
     }
 
-    92%, 94% {
+    92%,
+    94% {
         opacity: 1;
     }
 
@@ -613,7 +732,8 @@ footer {
         opacity: 1;
     }
 
-    97%, 100% {
+    97%,
+    100% {
         opacity: 0;
     }
 }
@@ -629,9 +749,11 @@ footer {
         width: 88%;
     }
 
+
     .home-header {
         margin-bottom: 45px;
     }
+
 
     .title-alto {
         font-size: 37px;
@@ -639,17 +761,32 @@ footer {
         letter-spacing: 0.14em;
     }
 
+
     .title-contraste {
         margin-left: 18px;
 
         font-size: 46px;
     }
 
-    .entry {
-        grid-template-columns: 1fr;
 
-        gap: 3px;
+    /*
+       Conservamos código + título
+       en una misma fila mientras
+       haya espacio suficiente.
+    */
+
+    .entry {
+        grid-template-columns:
+            75px 1fr;
     }
+
+
+    .entry-code {
+        min-width: 60px;
+
+        font-size: 11px;
+    }
+
 
     .writing-body {
         font-size: 17px;

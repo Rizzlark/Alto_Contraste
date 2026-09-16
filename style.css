@@ -1,3 +1,7 @@
+/* ==================================================
+   BASE
+   ================================================== */
+
 * {
     box-sizing: border-box;
 }
@@ -8,13 +12,16 @@ html {
 
 body {
     margin: 0;
+
     background: #000;
     color: #fff;
+
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
     width: min(90%, 760px);
+
     margin: 0 auto;
     padding: 24px 0 60px;
 }
@@ -28,64 +35,112 @@ body {
     margin-bottom: 55px;
 }
 
+
+/* ==================================================
+   TÍTULO
+   ================================================== */
+
 .site-title {
     position: relative;
 
-    margin: 0;
-    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-    border-bottom: 1px solid #fff;
+    margin: 0;
+    padding: 0 0 16px;
+
+    border-bottom: 6px solid #fff;
 
     color: #fff;
-    font-size: 32px;
-    font-weight: 600;
+
+    font-weight: 700;
+    line-height: 0.82;
 
     overflow: visible;
 }
 
 
-/* Contraste ligeramente fuera de sitio */
+/* ALTO */
 
-.broken-title span {
+.title-alto {
     position: relative;
-    display: inline-block;
+    z-index: 2;
 
-    transform: translate(3px, 2px);
+    display: block;
 
-    animation: fracture 9s steps(1) infinite;
+    font-size: 52px;
+    letter-spacing: -0.05em;
 }
 
 
-/*
-   Fractura del título:
-   sólo aparece una banda del duplicado,
-   no una copia gris completa.
-*/
+/* _CONTRASTE */
 
-.broken-title::after {
-    content: attr(data-text);
+.title-contraste {
+    position: relative;
+    z-index: 1;
+
+    display: block;
+
+    margin-top: 7px;
+    margin-left: 28px;
+
+    font-size: 58px;
+    letter-spacing: -0.06em;
+
+    animation: contraste-fracture 4s steps(1) infinite;
+}
+
+
+/* Corte negro horizontal */
+
+.title-contraste::after {
+    content: "";
 
     position: absolute;
-    left: 0;
-    top: 13px;
 
-    width: 100%;
-    height: 7px;
+    left: -8px;
+    top: 51%;
 
-    overflow: hidden;
+    width: calc(100% + 22px);
+    height: 4px;
 
-    color: #000;
-    background: #fff;
+    background: #000;
 
-    line-height: 32px;
-
-    transform: translateX(-3px);
+    transform: translateX(-12px);
 
     pointer-events: none;
 }
 
 
-/* Subtítulo */
+/* Fragmento desplazado */
+
+.title-contraste::before {
+    content: "_CONTRASTE";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 48%;
+
+    overflow: hidden;
+
+    color: #fff;
+
+    transform: translateX(3px);
+
+    opacity: 0.65;
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   SUBTÍTULO
+   ================================================== */
 
 .site-subtitle {
     position: relative;
@@ -94,16 +149,18 @@ body {
     padding: 16px 0;
 
     color: #fff;
+
     font-size: 16px;
 }
 
 
-/* línea rota bajo subtítulo */
+/* Línea rota bajo el subtítulo */
 
 .site-subtitle::before {
     content: "";
 
     position: absolute;
+
     left: 0;
     bottom: 0;
 
@@ -132,12 +189,13 @@ body {
 }
 
 
-/* cursor/fallo ocasional */
+/* Pequeño fallo tipo cursor */
 
 .site-subtitle::after {
     content: "_";
 
     display: inline-block;
+
     margin-left: 5px;
 
     color: #fff;
@@ -147,7 +205,7 @@ body {
 
 
 /* ==================================================
-   ESCRITOS
+   ARCHIVO DE ESCRITOS
    ================================================== */
 
 .archive-label {
@@ -164,12 +222,13 @@ body {
 }
 
 
-/* línea deliberadamente fragmentada */
+/* Línea fragmentada */
 
 .archive-label::after {
     content: "";
 
     position: absolute;
+
     left: 0;
     bottom: 0;
 
@@ -200,10 +259,13 @@ body {
 }
 
 
-/* Cada entrada */
+/* ==================================================
+   ENTRADAS
+   ================================================== */
 
 .entry {
     display: grid;
+
     grid-template-columns: 120px 1fr;
     align-items: center;
 
@@ -213,7 +275,7 @@ body {
 }
 
 
-/* pequeñas imperfecciones */
+/* Pequeñas imperfecciones */
 
 .entry:nth-of-type(odd) {
     width: 97%;
@@ -232,16 +294,20 @@ body {
 }
 
 
+/* Fecha */
+
 .entry time {
     color: #fff;
+
     font-size: 12px;
 }
 
 
-/* enlaces */
+/* Enlaces */
 
 .entry a {
     color: #fff;
+
     text-decoration: none;
 }
 
@@ -249,30 +315,28 @@ body {
     margin: 0;
 
     color: #fff;
+
     font-size: 18px;
     font-weight: 400;
 }
 
 
-/*
-   Hover invertido:
-   aquí aparece literalmente el alto contraste
-*/
+/* Inversión blanco / negro */
 
 .entry a:hover h2 {
     display: inline-block;
 
+    padding: 2px 5px;
+
     background: #fff;
     color: #000;
-
-    padding: 2px 5px;
 
     transform: translate(-2px, 0);
 }
 
 
 /* ==================================================
-   PÁGINAS DE LOS TEXTOS
+   PÁGINAS DE LOS ESCRITOS
    ================================================== */
 
 .back {
@@ -281,7 +345,9 @@ body {
     margin-bottom: 55px;
 
     color: #fff;
+
     font-size: 13px;
+
     text-decoration: none;
 }
 
@@ -290,26 +356,33 @@ body {
     color: #000;
 }
 
+
 .writing {
     max-width: 700px;
 }
+
 
 .writing-header {
     margin-bottom: 50px;
 }
 
+
 .writing-title {
     margin: 0 0 8px;
 
     color: #fff;
+
     font-size: 30px;
     font-weight: 500;
 }
 
+
 .writing-date {
     color: #fff;
+
     font-size: 12px;
 }
+
 
 .writing-body {
     max-width: 620px;
@@ -317,13 +390,16 @@ body {
     color: #fff;
 
     font-family: Georgia, "Times New Roman", serif;
+
     font-size: 18px;
     line-height: 1.9;
 }
 
+
 .writing-body p {
     margin: 0 0 30px;
 }
+
 
 .verse {
     white-space: pre-line;
@@ -354,6 +430,7 @@ footer {
     margin-top: 70px;
 
     color: #fff;
+
     font-size: 11px;
 
     opacity: 0.45;
@@ -361,28 +438,43 @@ footer {
 
 
 /* ==================================================
-   ANIMACIONES
+   ANIMACIÓN DE _CONTRASTE
+
+   Cada 4 segundos ocurre una pequeña fractura.
+   El resto del tiempo permanece inmóvil.
    ================================================== */
 
-@keyframes fracture {
+@keyframes contraste-fracture {
 
-    0%, 96%, 100% {
-        transform: translate(3px, 2px);
+    0%, 91%, 100% {
+        transform: translateX(0);
     }
 
-    97% {
-        transform: translate(7px, 2px);
+    92% {
+        transform: translateX(8px);
+    }
+
+    94% {
+        transform: translateX(-3px);
+    }
+
+    96% {
+        transform: translateX(5px);
     }
 
     98% {
-        transform: translate(0, 2px);
+        transform: translateX(-1px);
     }
 
     99% {
-        transform: translate(5px, 2px);
+        transform: translateX(0);
     }
 }
 
+
+/* ==================================================
+   CURSOR DEL SUBTÍTULO
+   ================================================== */
 
 @keyframes broken-cursor {
 
@@ -418,16 +510,23 @@ footer {
         width: 88%;
     }
 
-    .site-title {
-        font-size: 28px;
-    }
-
     .home-header {
         margin-bottom: 45px;
     }
 
+    .title-alto {
+        font-size: 42px;
+    }
+
+    .title-contraste {
+        margin-left: 18px;
+
+        font-size: 45px;
+    }
+
     .entry {
         grid-template-columns: 1fr;
+
         gap: 3px;
     }
 

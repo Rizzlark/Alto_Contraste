@@ -38,13 +38,15 @@
         </div>
 
 
-        <!-- Entrada 1: la más antigua -->
+        <!-- ==================================================
+             ENTRADA 001
+             ================================================== -->
 
         <article class="entry">
 
-            <time datetime="2026-09-16">
-                16.09.2026
-            </time>
+            <span class="entry-code" data-code="001">
+                [001]
+            </span>
 
             <a href="escritos/nada.html">
                 <h2>Nada</h2>
@@ -53,13 +55,15 @@
         </article>
 
 
-        <!-- Entrada 2 -->
+        <!-- ==================================================
+             ENTRADA 002
+             ================================================== -->
 
         <article class="entry">
 
-            <time datetime="2026-09-16">
-                16.09.2026
-            </time>
+            <span class="entry-code" data-code="002">
+                [002]
+            </span>
 
             <a href="escritos/mi-nueva-rutina.html">
                 <h2>Mi nueva rutina</h2>
@@ -76,5 +80,234 @@
 
 </main>
 
+
+<script>
+
+/* ==================================================
+   SISTEMA DE CÓDIGOS CORRUPTOS
+   ================================================== */
+
+
+/*
+   Símbolos que pueden sustituir aleatoriamente
+   a uno de los números.
+*/
+
+const corruptionSymbols = [
+    "_",
+    "/",
+    "\\",
+    "-",
+    "."
+];
+
+
+/*
+   Localizamos todas las entradas.
+*/
+
+const entries =
+    document.querySelectorAll(".entry");
+
+
+/* ==================================================
+   CORROMPER UN CÓDIGO
+   ================================================== */
+
+function corruptCode(element) {
+
+    const original =
+        element.dataset.code;
+
+    let characters =
+        original.split("");
+
+
+    /*
+       Elegimos una posición aleatoria.
+    */
+
+    const position =
+        Math.floor(
+            Math.random() * characters.length
+        );
+
+
+    /*
+       Elegimos un símbolo aleatorio.
+    */
+
+    const symbol =
+        corruptionSymbols[
+            Math.floor(
+                Math.random() *
+                corruptionSymbols.length
+            )
+        ];
+
+
+    /*
+       Sustituimos el número.
+    */
+
+    characters[position] = symbol;
+
+
+    /*
+       A veces provocamos además
+       un pequeño desplazamiento interno.
+    */
+
+    if (Math.random() < 0.25) {
+
+        const secondPosition =
+            Math.floor(
+                Math.random() *
+                characters.length
+            );
+
+        characters[secondPosition] =
+            characters[secondPosition] + " ";
+    }
+
+
+    /*
+       Mostramos el código corrupto.
+    */
+
+    element.textContent =
+        "[" + characters.join("") + "]";
+}
+
+
+/* ==================================================
+   INICIALIZACIÓN
+   ================================================== */
+
+entries.forEach(entry => {
+
+    const code =
+        entry.querySelector(".entry-code");
+
+
+    /*
+       Al cargar la página,
+       cada código aparece ya corrupto.
+    */
+
+    corruptCode(code);
+
+
+    /*
+       Al colocar el cursor sobre una entrada,
+       reconstruimos su número verdadero.
+    */
+
+    entry.addEventListener(
+        "mouseenter",
+        () => {
+
+            code.textContent =
+                "[" +
+                code.dataset.code +
+                "]";
+
+            code.classList.add(
+                "reconstructed"
+            );
+        }
+    );
+
+
+    /*
+       Al retirar el cursor,
+       vuelve a corromperse.
+    */
+
+    entry.addEventListener(
+        "mouseleave",
+        () => {
+
+            code.classList.remove(
+                "reconstructed"
+            );
+
+            corruptCode(code);
+        }
+    );
+
+});
+
+
+/* ==================================================
+   CORRUPCIÓN ESPONTÁNEA
+   ==================================================
+
+   Cada 2,4 segundos se selecciona UNA entrada
+   aleatoriamente y cambia su código.
+
+   Si el cursor está sobre ella, no se modifica.
+   ================================================== */
+
+setInterval(() => {
+
+    if (entries.length === 0) {
+        return;
+    }
+
+
+    /*
+       Elegimos una entrada al azar.
+    */
+
+    const randomEntry =
+        entries[
+            Math.floor(
+                Math.random() *
+                entries.length
+            )
+        ];
+
+
+    const code =
+        randomEntry.querySelector(
+            ".entry-code"
+        );
+
+
+    /*
+       No corrompemos el código mientras
+       el usuario está encima de la entrada.
+    */
+
+    if (!randomEntry.matches(":hover")) {
+
+        corruptCode(code);
+
+        code.classList.add(
+            "code-glitch"
+        );
+
+
+        /*
+           La sacudida dura solamente
+           una fracción de segundo.
+        */
+
+        setTimeout(() => {
+
+            code.classList.remove(
+                "code-glitch"
+            );
+
+        }, 120);
+
+    }
+
+}, 2400);
+
+</script>
+
 </body>
+
 </html>

@@ -2,10 +2,14 @@
     box-sizing: border-box;
 }
 
+html {
+    background: #000;
+}
+
 body {
     margin: 0;
-    background: #0d1117;
-    color: #f0f0f0;
+    background: #000;
+    color: #fff;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -16,44 +20,187 @@ body {
 }
 
 
-/* CABECERA */
+/* ==================================================
+   CABECERA
+   ================================================== */
 
 .home-header {
     margin-bottom: 55px;
 }
 
 .site-title {
+    position: relative;
+
     margin: 0;
     padding-bottom: 10px;
 
-    border-bottom: 1px solid #30363d;
+    border-bottom: 1px solid #fff;
 
+    color: #fff;
     font-size: 32px;
     font-weight: 600;
-    letter-spacing: 0;
+
+    overflow: visible;
 }
 
+
+/* Contraste ligeramente fuera de sitio */
+
+.broken-title span {
+    position: relative;
+    display: inline-block;
+
+    transform: translate(3px, 2px);
+
+    animation: fracture 9s steps(1) infinite;
+}
+
+
+/*
+   Fractura del título:
+   sólo aparece una banda del duplicado,
+   no una copia gris completa.
+*/
+
+.broken-title::after {
+    content: attr(data-text);
+
+    position: absolute;
+    left: 0;
+    top: 13px;
+
+    width: 100%;
+    height: 7px;
+
+    overflow: hidden;
+
+    color: #000;
+    background: #fff;
+
+    line-height: 32px;
+
+    transform: translateX(-3px);
+
+    pointer-events: none;
+}
+
+
+/* Subtítulo */
+
 .site-subtitle {
+    position: relative;
+
     margin: 0;
     padding: 16px 0;
 
-    border-bottom: 1px solid #30363d;
-
-    color: #f0f0f0;
+    color: #fff;
     font-size: 16px;
 }
 
 
-/* LISTA DE ESCRITOS */
+/* línea rota bajo subtítulo */
+
+.site-subtitle::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            to right,
+
+            #fff 0%,
+            #fff 38%,
+
+            transparent 38%,
+            transparent 42%,
+
+            #fff 42%,
+            #fff 73%,
+
+            transparent 73%,
+            transparent 76%,
+
+            #fff 76%,
+            #fff 100%
+        );
+}
+
+
+/* cursor/fallo ocasional */
+
+.site-subtitle::after {
+    content: "_";
+
+    display: inline-block;
+    margin-left: 5px;
+
+    color: #fff;
+
+    animation: broken-cursor 5s steps(1) infinite;
+}
+
+
+/* ==================================================
+   ESCRITOS
+   ================================================== */
 
 .archive-label {
-    margin-bottom: 5px;
+    position: relative;
 
-    color: #777;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+
+    color: #fff;
+
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
 }
+
+
+/* línea deliberadamente fragmentada */
+
+.archive-label::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            to right,
+
+            #fff 0%,
+            #fff 18%,
+
+            transparent 18%,
+            transparent 22%,
+
+            #fff 22%,
+            #fff 57%,
+
+            transparent 57%,
+            transparent 61%,
+
+            #fff 61%,
+            #fff 88%,
+
+            transparent 88%
+        );
+}
+
+
+/* Cada entrada */
 
 .entry {
     display: grid;
@@ -62,45 +209,85 @@ body {
 
     padding: 17px 0;
 
-    border-bottom: 1px solid #21262d;
+    border-bottom: 1px solid #fff;
 }
 
+
+/* pequeñas imperfecciones */
+
+.entry:nth-of-type(odd) {
+    width: 97%;
+}
+
+.entry:nth-of-type(even) {
+    width: 99%;
+}
+
+.entry:nth-of-type(odd) time {
+    transform: translateX(2px);
+}
+
+.entry:nth-of-type(even) h2 {
+    transform: translateX(5px);
+}
+
+
 .entry time {
-    color: #666;
+    color: #fff;
     font-size: 12px;
 }
 
+
+/* enlaces */
+
 .entry a {
-    color: inherit;
+    color: #fff;
     text-decoration: none;
 }
 
 .entry h2 {
     margin: 0;
 
+    color: #fff;
     font-size: 18px;
     font-weight: 400;
 }
 
+
+/*
+   Hover invertido:
+   aquí aparece literalmente el alto contraste
+*/
+
 .entry a:hover h2 {
-    text-decoration: underline;
+    display: inline-block;
+
+    background: #fff;
+    color: #000;
+
+    padding: 2px 5px;
+
+    transform: translate(-2px, 0);
 }
 
 
-/* PÁGINAS DE LOS TEXTOS */
+/* ==================================================
+   PÁGINAS DE LOS TEXTOS
+   ================================================== */
 
 .back {
     display: inline-block;
 
     margin-bottom: 55px;
 
-    color: #777;
+    color: #fff;
     font-size: 13px;
     text-decoration: none;
 }
 
 .back:hover {
-    color: white;
+    background: #fff;
+    color: #000;
 }
 
 .writing {
@@ -114,17 +301,20 @@ body {
 .writing-title {
     margin: 0 0 8px;
 
+    color: #fff;
     font-size: 30px;
     font-weight: 500;
 }
 
 .writing-date {
-    color: #666;
+    color: #fff;
     font-size: 12px;
 }
 
 .writing-body {
     max-width: 620px;
+
+    color: #fff;
 
     font-family: Georgia, "Times New Roman", serif;
     font-size: 18px;
@@ -140,7 +330,9 @@ body {
 }
 
 
-/* IMÁGENES */
+/* ==================================================
+   IMÁGENES
+   ================================================== */
 
 .writing-image {
     display: block;
@@ -149,166 +341,46 @@ body {
     height: auto;
 
     margin: 45px 0;
+
+    filter: grayscale(100%) contrast(125%);
 }
 
 
-/* PIE */
+/* ==================================================
+   PIE
+   ================================================== */
 
 footer {
     margin-top: 70px;
 
-    color: #444;
+    color: #fff;
     font-size: 11px;
+
+    opacity: 0.45;
 }
 
-
-/* MÓVIL */
-
-@media (max-width: 600px) {
-
-    .container {
-        width: 88%;
-    }
-
-    .site-title {
-        font-size: 28px;
-    }
-
-    .home-header {
-        margin-bottom: 45px;
-    }
-
-    .entry {
-        grid-template-columns: 1fr;
-        gap: 3px;
-    }
-
-    .writing-body {
-        font-size: 17px;
-    }
-}
 
 /* ==================================================
-   FRACTURAS — Alto_Contraste
+   ANIMACIONES
    ================================================== */
 
+@keyframes fracture {
 
-/* --- TÍTULO ROTO --- */
+    0%, 96%, 100% {
+        transform: translate(3px, 2px);
+    }
 
-.broken-title {
-    position: relative;
-    overflow: visible;
-}
+    97% {
+        transform: translate(7px, 2px);
+    }
 
-.broken-title span {
-    position: relative;
-    display: inline-block;
+    98% {
+        transform: translate(0, 2px);
+    }
 
-    transform: translate(3px, 2px);
-}
-
-
-/* pequeño fragmento desplazado del título */
-
-.broken-title::after {
-    content: attr(data-text);
-
-    position: absolute;
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 47%;
-
-    overflow: hidden;
-
-    color: #f0f0f0;
-    background: #0d1117;
-
-    transform: translate(-2px, 0);
-
-    pointer-events: none;
-
-    opacity: 0.32;
-}
-
-
-/* --- LÍNEA INTERRUMPIDA --- */
-
-.broken-line {
-    position: relative;
-
-    border-bottom: none;
-    padding-bottom: 10px;
-}
-
-.broken-line::after {
-    content: "";
-
-    position: absolute;
-    left: 0;
-    bottom: 0;
-
-    width: 100%;
-    height: 1px;
-
-    background:
-        linear-gradient(
-            to right,
-
-            #30363d 0%,
-            #30363d 18%,
-
-            transparent 18%,
-            transparent 22%,
-
-            #30363d 22%,
-            #30363d 57%,
-
-            transparent 57%,
-            transparent 61%,
-
-            #30363d 61%,
-            #30363d 88%,
-
-            transparent 88%
-        );
-}
-
-
-/* --- ENTRADAS LIGERAMENTE FUERA DE SITIO --- */
-
-.entry:nth-of-type(even) h2 {
-    transform: translateX(5px);
-}
-
-.entry:nth-of-type(odd) time {
-    transform: translateX(2px);
-}
-
-
-/* --- ALGUNAS LÍNEAS NO LLEGAN AL FINAL --- */
-
-.entry:nth-of-type(odd) {
-    width: 97%;
-}
-
-.entry:nth-of-type(even) {
-    width: 99%;
-}
-
-
-/* --- CURSOR / FALLO MÍNIMO --- */
-
-.site-subtitle::after {
-    content: "_";
-
-    display: inline-block;
-    margin-left: 5px;
-
-    color: #555;
-
-    animation: broken-cursor 5s steps(1) infinite;
+    99% {
+        transform: translate(5px, 2px);
+    }
 }
 
 
@@ -336,27 +408,30 @@ footer {
 }
 
 
-/* --- FRACTURA OCASIONAL DEL TÍTULO --- */
+/* ==================================================
+   MÓVIL
+   ================================================== */
 
-@keyframes fracture {
+@media (max-width: 600px) {
 
-    0%, 96%, 100% {
-        transform: translate(3px, 2px);
+    .container {
+        width: 88%;
     }
 
-    97% {
-        transform: translate(6px, 2px);
+    .site-title {
+        font-size: 28px;
     }
 
-    98% {
-        transform: translate(1px, 2px);
+    .home-header {
+        margin-bottom: 45px;
     }
 
-    99% {
-        transform: translate(4px, 2px);
+    .entry {
+        grid-template-columns: 1fr;
+        gap: 3px;
     }
-}
 
-.broken-title span {
-    animation: fracture 9s steps(1) infinite;
+    .writing-body {
+        font-size: 17px;
+    }
 }

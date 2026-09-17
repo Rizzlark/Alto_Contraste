@@ -548,7 +548,35 @@ h2 {
         contrast(125%);
 }
 
+/* ==================================================
+   IMAGEN — NADA
+   ================================================== */
 
+.writing-visual-nada {
+    margin: 135px 0 150px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transition:
+        opacity 2s ease;
+}
+
+
+.writing-visual-nada.is-visible {
+    opacity: 1;
+}
+
+
+.writing-image-nada {
+    display: block;
+
+    width: min(100%, 480px);
+    height: auto;
+
+    margin: 0 auto;
+}
 /* ==================================================
    PIE
    ================================================== */

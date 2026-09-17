@@ -557,7 +557,7 @@ h2 {
 
     text-align: center;
 
-    opacity: 0;
+    opacity: 1;
 
     transition:
         opacity 2s ease;

@@ -71,17 +71,6 @@
 
         </article>
 
-    </section>
-
-
-    <footer>
-        Alto_Contraste
-    </footer>
-
-</main>
-
-
-<script>
 
         <!-- ==================================================
              ENTRADA 003
@@ -98,16 +87,22 @@
             </a>
 
         </article>
-   
+
+    </section>
+
+
+    <footer>
+        Alto_Contraste
+    </footer>
+
+</main>
+
+
+<script>
+
 /* ==================================================
    SISTEMA DE CÓDIGOS CORRUPTOS
    ================================================== */
-
-
-/*
-   Símbolos que pueden sustituir aleatoriamente
-   a uno de los números.
-*/
 
 const corruptionSymbols = [
     "_",
@@ -116,11 +111,6 @@ const corruptionSymbols = [
     "-",
     "."
 ];
-
-
-/*
-   Localizamos todas las entradas.
-*/
 
 const entries =
     document.querySelectorAll(".entry");
@@ -138,20 +128,10 @@ function corruptCode(element) {
     let characters =
         original.split("");
 
-
-    /*
-       Elegimos una posición aleatoria.
-    */
-
     const position =
         Math.floor(
             Math.random() * characters.length
         );
-
-
-    /*
-       Elegimos un símbolo aleatorio.
-    */
 
     const symbol =
         corruptionSymbols[
@@ -161,18 +141,7 @@ function corruptCode(element) {
             )
         ];
 
-
-    /*
-       Sustituimos el número.
-    */
-
     characters[position] = symbol;
-
-
-    /*
-       A veces provocamos además
-       un pequeño desplazamiento interno.
-    */
 
     if (Math.random() < 0.25) {
 
@@ -185,11 +154,6 @@ function corruptCode(element) {
         characters[secondPosition] =
             characters[secondPosition] + " ";
     }
-
-
-    /*
-       Mostramos el código corrupto.
-    */
 
     element.textContent =
         "[" + characters.join("") + "]";
@@ -205,19 +169,7 @@ entries.forEach(entry => {
     const code =
         entry.querySelector(".entry-code");
 
-
-    /*
-       Al cargar la página,
-       cada código aparece ya corrupto.
-    */
-
     corruptCode(code);
-
-
-    /*
-       Al colocar el cursor sobre una entrada,
-       reconstruimos su número verdadero.
-    */
 
     entry.addEventListener(
         "mouseenter",
@@ -233,12 +185,6 @@ entries.forEach(entry => {
             );
         }
     );
-
-
-    /*
-       Al retirar el cursor,
-       vuelve a corromperse.
-    */
 
     entry.addEventListener(
         "mouseleave",
@@ -257,12 +203,6 @@ entries.forEach(entry => {
 
 /* ==================================================
    CORRUPCIÓN ESPONTÁNEA
-   ==================================================
-
-   Cada 2,4 segundos se selecciona UNA entrada
-   aleatoriamente y cambia su código.
-
-   Si el cursor está sobre ella, no se modifica.
    ================================================== */
 
 setInterval(() => {
@@ -270,11 +210,6 @@ setInterval(() => {
     if (entries.length === 0) {
         return;
     }
-
-
-    /*
-       Elegimos una entrada al azar.
-    */
 
     const randomEntry =
         entries[
@@ -284,17 +219,10 @@ setInterval(() => {
             )
         ];
 
-
     const code =
         randomEntry.querySelector(
             ".entry-code"
         );
-
-
-    /*
-       No corrompemos el código mientras
-       el usuario está encima de la entrada.
-    */
 
     if (!randomEntry.matches(":hover")) {
 
@@ -303,12 +231,6 @@ setInterval(() => {
         code.classList.add(
             "code-glitch"
         );
-
-
-        /*
-           La sacudida dura solamente
-           una fracción de segundo.
-        */
 
         setTimeout(() => {
 

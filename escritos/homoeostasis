@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HOMOeostasis — Alto_Contraste</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<main class="container writing">
+
+    <a class="back" href="../index.html">← Alto_Contraste</a>
+
+    <header class="writing-header">
+
+        <h1 class="writing-title">HOMOeostasis</h1>
+
+    </header>
+
+    <div class="writing-body">
+
+        <p>
+            Sabemos que la energía se propaga sin destruirse y que la alegría es capaz de transformar nuestro entorno. La euforia golpea el techo con su emoción, creando picos difíciles de volver a alcanzar. Entonces nace un valle de profundidad proporcional. El sueño de ayer es la pesadilla de hoy; la tristeza de hoy, el motivo del mañana.
+        </p>
+
+        <p>
+            Entonces bailamos en búsqueda de la alegría prometida. Desprendemos un sudor catártico que limpia las impurezas del alma. Esquirlas clavadas en recovecos difíciles de alcanzar que ahora se evaporan, dejando atrás todo pensamiento. Y aunque no estemos impunes, por un momento eso ya no importa.
+        </p>
+
+        <p>
+            Podemos vivir con la culpa y cargar su peso hasta el final. Somos Atlas y somos Sísifo al mismo tiempo, condenados a cargar y a empujar el lastre hasta disolvernos por completo. Intentamos no arrepentirnos, pues hacerlo supondría traicionar a quienes somos hoy.
+        </p>
+
+        <p>
+            Por eso te rendimos pleitesía, fuente inagotable de sensaciones y experiencias. Aunque el viaje no siempre sea un deleite, agradeceremos por el hoy, haremos lo posible para no vivir ansiando el mañana y, de vez en cuando, lloraremos cuando nos invada la melancolía que nos dejó el ayer.
+        </p>
+
+    </div>
+
+</main>
+
+</body>
+</html>
